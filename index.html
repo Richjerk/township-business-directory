@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Township Small Business Directory</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 80%;
+        margin: 20px auto;
+      }
+      h1 {
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function BusinessForm() {
+        const [formData, setFormData] = React.useState({
+          name: '',
+          description: '',
+          address: '',
+          phone: '',
+          image: ''
+        });
+
+        const handleChange = (e) => {
+          setFormData({ ...formData, [e.target.name]: e.target.value });
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          console.log('Business Added:', formData);
+        };
+
+        return (
+          <div className="container">
+            <h1>Register Your Business</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Business Name:</label>
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+              </div>
+
+              <div className="form-group">
+                <label>Business Description:</label>
+                <textarea name="description" value={formData.description} onChange={handleChange} required />
+              </div>
+
+              <div className="form-group">
+                <label>Business Address:</label>
+                <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+              </div>
+
+              <div className="form-group">
+                <label>Business Phone:</label>
+                <input type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+              </div>
+
+              <div className="form-group">
+                <label>Business Image (optional):</label>
+                <input type="file" name="image" onChange={handleChange} />
+              </div>
+
+              <button type="submit">Add Business</button>
+            </form>
+          </div>
+        );
+      }
+
+      function MyApp() {
+        return (
+          <div>
+            <BusinessForm />
+          </div>
+        );
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+
+    <!-- Note: this setup is not recommended for production as it uses Babel to transpile JSX in the browser. -->
+  </body>
+</html>
