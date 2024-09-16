@@ -10,7 +10,8 @@ const LandingPage = () => {
 
   return (
     <div>
-      <h1>Township Businesses</h1>
+       <h1>Welcome to the Township Business Directory</h1>
+      <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" />
       <div>
         {businesses.map(business => (
           <div key={business._id}>

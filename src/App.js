@@ -1,29 +1,14 @@
-import './App.css';
 import React from 'react';
+import HomePage from './HomePage'; // Ensure this path is correct
+import Footer from './components/Footer'; // Ensure this path is correct
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="logo.svg" className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HomePage />
+      <Footer />
     </div>
   );
-}
-
-export default App;
-
-
+};
 
 export default App;
