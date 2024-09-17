@@ -1,33 +1,39 @@
-import React, { useState, useEffect } from 'react';
+// src/components/LandingPage.js
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const LandingPage = () => {
+function LandingPage() {
   const [businesses, setBusinesses] = useState([]);
 
   useEffect(() => {
-    axios.get('/businesses').then(res => setBusinesses(res.data));
+    const fetchBusinesses = async () => {
+      try {
+        const response = await axios.get('/api/businesses');
+        setBusinesses(response.data);
+      } catch (error) {
+        console.error('Error fetching businesses:', error);
+      }
+    };
+
+    fetchBusinesses();
   }, []);
 
   return (
     <div>
-       <h1>Welcome to the Township Business Directory</h1>
-      <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" />
-      <div>
-        {businesses.map(business => (
-          <div key={business._id}>
+      <h1>Our Businesses</h1>
+      <ul>
+        {businesses.map((business) => (
+          <li key={business._id}>
             <h2>{business.name}</h2>
             <p>{business.description}</p>
             <p>{business.address}</p>
             <p>{business.phone}</p>
-          </div>
+            <img src={business.image} alt={business.name} />
+          </li>
         ))}
-      </div>
-      <div className="advertising-space">
-        <h2>Advertising Space</h2>
-        <p>Place your advertisement here!</p>
-      </div>
+      </ul>
     </div>
   );
-};
+}
 
 export default LandingPage;

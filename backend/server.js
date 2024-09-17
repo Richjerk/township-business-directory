@@ -1,35 +1,59 @@
+// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/township-businesses', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-// Import models
-const Business = require('./models/Business');
-const User = require('./models/User');
-
-// Routes
-app.post('/businesses', async (req, res) => {
-  const { name, description, address, phone, image, location } = req.body;
-  const newBusiness = new Business({ name, description, address, phone, image, location });
-  await newBusiness.save();
-  res.json(newBusiness);
+const BusinessSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  address: String,
+  phone: String,
+  image: String
 });
 
-app.post('/users', async (req, res) => {
-  const { username, email, phone, location } = req.body;
-  const newUser = new User({ username, email, phone, location });
-  await newUser.save();
-  res.json(newUser);
+const Business = mongoose.model('Business', BusinessSchema);
+
+app.post('/api/businesses', async (req, res) => {
+  const newBusiness = new Business(req.body);
+  try {
+    await newBusiness.save();
+    res.status(201).json(newBusiness);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
-// Listen to requests
-const PORT = process.env.PORT || 5000;
+// backend/server.js (add this to your existing server file)
+const { getChatResponse } = require('./chatbot');
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const response = await getChatResponse(req.body.prompt);
+    res.json({ response });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+app.get('/api/businesses', async (req, res) => {
+  try {
+    const businesses = await Business.find();
+    res.status(200).json(businesses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,31 +1,37 @@
+// src/components/UserForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const UserForm = () => {
-  const [formData, setFormData] = useState({
-    username: '', email: '', phone: '', location: {}
+function UserForm() {
+  const [user, setUser] = useState({
+    username: '',
+    email: '',
+    phone: ''
   });
 
-  const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-  const handleGeoLocation = () => navigator.geolocation.getCurrentPosition(
-    (position) => setFormData({ ...formData, location: { type: "Point", coordinates: [position.coords.longitude, position.coords.latitude] } })
-  );
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/users', formData);
-    alert('User added!');
+    try {
+      await axios.post('/api/users', user);
+      alert('User registered!');
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
-      <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-      <input type="text" name="phone" placeholder="Phone" onChange={handleChange} required />
-      <button type="button" onClick={handleGeoLocation}>Use Geo-location</button>
-      <button type="submit">Submit</button>
+      <input type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" required />
+      <input type="email" name="email" value={user.email} onChange={handleChange} placeholder="Email" required />
+      <input type="text" name="phone" value={user.phone} onChange={handleChange} placeholder="Phone" required />
+      <button type="submit">Register User</button>
     </form>
   );
-};
+}
 
 export default UserForm;
+

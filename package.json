@@ -2,7 +2,7 @@
   "name": "township-business-directory",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Richjerk.github.io/township-business-directory",
+  "homepage": "https://myusername.github.io/my-app",
   "dependencies": {
     "@sideway/address": "^5.0.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -11,6 +11,7 @@
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "env-cmd": "^10.1.0",
     "express": "^4.21.0",
     "joi": "^17.13.3",
     "mongoose": "^8.6.2",
@@ -26,7 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build:staging": "env-cmd -f .env.staging npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,5 +51,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.1"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
+
+

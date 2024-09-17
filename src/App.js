@@ -1,14 +1,21 @@
+// src/App.js
 import React from 'react';
-import HomePage from './HomePage'; // Ensure this path is correct
-import Footer from './components/Footer'; // Ensure this path is correct
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import BusinessForm from './components/BusinessForm';
+import UserForm from './components/UserForm';
+import LandingPage from './components/LandingPage';
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <HomePage />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/register-business" element={<BusinessForm />} />
+        <Route path="/register-user" element={<UserForm />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
+

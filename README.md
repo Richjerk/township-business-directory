@@ -59,3 +59,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - [Troubleshooting Build Failures](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7cd645b4-31c7-466a-8436-9af8edf801c1/deploy-status)](https://app.netlify.com/sites/township-business-diretcory/deploys)
+
+[![Deploy static content to Pages](https://github.com/Richjerk/township-business-directory/actions/workflows/static.yml/badge.svg)](https://github.com/Richjerk/township-business-directory/actions/workflows/static.yml)
