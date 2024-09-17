@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Use 'react-dom/client' for React 18+
-import App from './App';  // Ensure that this path is correct
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Create a root
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
