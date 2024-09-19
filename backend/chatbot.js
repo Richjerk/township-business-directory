@@ -1,18 +1,18 @@
-// backend/chatbot.js
-const { Configuration, OpenAI } = require('openai');
+const { Configuration, OpenAIApi } = require('openai'); // Ensure this line is correct
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY, // Make sure you have this variable in your .env
 });
-const openai = new OpenAI(configuration);
+
+const openai = new OpenAIApi(configuration);
 
 async function getChatResponse(prompt) {
-  const response = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: prompt,
-    max_tokens: 150,
+  const response = await openai.createChatCompletion({
+    model: 'gpt-3.5-turbo', // or any model you are using
+    messages: [{ role: 'user', content: prompt }],
   });
-  return response.data.choices[0].text.trim();
+  return response.data.choices[0].message.content;
 }
 
 module.exports = { getChatResponse };
+

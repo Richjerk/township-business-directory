@@ -5,16 +5,19 @@
   "homepage": "https://myusername.github.io/my-app",
   "dependencies": {
     "@sideway/address": "^5.0.0",
+    "@stackbit/cms-contentful": "^1.0.10",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
+    "cloudinary": "^2.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "env-cmd": "^10.1.0",
     "express": "^4.21.0",
     "joi": "^17.13.3",
-    "mongoose": "^8.6.2",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.6.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
@@ -56,5 +59,3 @@
     "node": ">=14"
   }
 }
-
-

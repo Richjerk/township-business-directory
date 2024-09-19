@@ -4,13 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Township Business Directory</title>
+  <!-- Use %PUBLIC_URL% for assets when using React -->
   <link rel="stylesheet" href="%PUBLIC_URL%/styles/custom-styles.css">
 </head>
 <body>
+  <!-- Main root div for React app -->
   <div id="root"></div>
+
+  <!-- Static content outside of React -->
+  <h1>MongoDB with Netlify Functions</h1>
+  <ul id="businesses"></ul>
+  
+  <!-- Example logo -->
   <img src="%PUBLIC_URL%/images/logo.png" alt="Logo">
+
+  <!-- Script to fetch and display data from Netlify Functions -->
+  <script>
+    (async () => {
+      try {
+        let results = await fetch("/.netlify/functions/get_township_businesses").then(response => response.json());
+        results.forEach(result => {
+          const listItem = document.createElement("li");
+          listItem.innerText = result.name; // Adjusted property name based on business context
+          document.getElementById("businesses").appendChild(listItem);
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    })();
+  </script>
+
   <!-- The following script tag is injected by react-scripts -->
 </body>
 </html>
+
 
 
