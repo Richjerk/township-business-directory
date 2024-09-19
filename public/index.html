@@ -4,39 +4,118 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Township Business Directory</title>
-  <!-- Use %PUBLIC_URL% for assets when using React -->
   <link rel="stylesheet" href="%PUBLIC_URL%/styles/custom-styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .business {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .business img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .business h2 {
+      margin: 10px 0;
+    }
+    .business p {
+      margin: 5px 0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: #4CAF50;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <!-- Main root div for React app -->
-  <div id="root"></div>
+  <header>
+    <h1>Township Business Directory</h1>
+  </header>
 
-  <!-- Static content outside of React -->
-  <h1>MongoDB with Netlify Functions</h1>
-  <ul id="businesses"></ul>
-  
-  <!-- Example logo -->
-  <img src="%PUBLIC_URL%/images/logo.png" alt="Logo">
+ <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="businesses.html">Our Businesses</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+</nav>
 
-  <!-- Script to fetch and display data from Netlify Functions -->
-  <script>
-    (async () => {
-      try {
-        let results = await fetch("/.netlify/functions/get_township_businesses").then(response => response.json());
-        results.forEach(result => {
-          const listItem = document.createElement("li");
-          listItem.innerText = result.name; // Adjusted property name based on business context
-          document.getElementById("businesses").appendChild(listItem);
-        });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    })();
-  </script>
 
-  <!-- The following script tag is injected by react-scripts -->
+
+  <div class="container">
+    <section id="businesses">
+      <h2>Featured Businesses</h2>
+
+      <div class="business">
+        <img src="https://copilot.microsoft.com/images/create/orange-farm-township-bread-baking-bakery-in-south-/1-66ec7c8110724cfcaea884d7b7aecd1c?id=k8nUriWWhjfSPcRqbyWbHQ%3d%3d&view=detailv2&idpp=genimg&thId=OIG1.GlQC8buza.zFydNFgWL6&skey=RXrq0yEjIkyJsSU8Mgw6jIEZ28p-NWXwowSvjKmZoHI&FORM=GCRIDP&mode=overlay" alt="Orange Farm Township Bread Baking Bakery" />
+        <h2>Siyabonga Bakery</h2>
+        <p><strong>Description:</strong> A local bakery specializing in fresh bread, pastries, and traditional South African treats. Known for its warm service and delicious baked goods.</p>
+        <p><strong>Location:</strong> 123 Staduim Road, Orange Farm, Johannesburg, 1841</p>
+        <p><strong>Contact:</strong> (011) 850-4567</p>
+      </div>
+
+      <div class="business">
+        <img src="https://copilot.microsoft.com/images/create/orange-farm-township-makhaya-crocery-spaza-shop-in/1-66ec7deb5ad445f0b3ede4aedd3cd8f9?id=ZlVCFm%2b3aD3b0oaGD%2bU4gg%3d%3d&view=detailv2&idpp=genimg&thId=OIG2.QXXv_MNCq.w7uSgfs0k5&skey=RXrq0yEjIkyJsSU8Mgw6jIEZ28p-NWXwowSvjKmZoHI&FORM=GCRIDP&mode=overlay" alt="Orange Farm Township Makhaya Grocery Spaza Shop" />
+        <h2>Makhaya Spaza Shop</h2>
+        <p><strong>Description:</strong> A community convenience store offering a variety of everyday groceries, snacks, and household items at competitive prices. Known for friendly service and supporting local suppliers.</p>
+        <p><strong>Location:</strong> 456 Link Road, Orange Farm, Johannesburg, 1841</p>
+        <p><strong>Contact:</strong>  (011) 850-5678</p>
+      </div>
+
+      <div class="business">
+        <img src="https://copilot.microsoft.com/images/create/orange-farm-township-mawasha-wax-n-shine-car-wash-/1-66ec7f1ceb7b4526af09c1276db474cc?id=Dv1ywvNjSJkWxzNxWCK%2bTQ%3d%3d&view=detailv2&idpp=genimg&thId=OIG1.j6gU4Deq0k1w1aeZ4pQv&skey=RXrq0yEjIkyJsSU8Mgw6jIEZ28p-NWXwowSvjKmZoHI&FORM=GCRIDP&mode=overlay" alt="Mawasha Wax N Shine Car Wash" />
+        <h2>Mawasha Wax n Shine 3</h2>
+        <p><strong>Description:</strong> A professional car wash service providing cleaning, detailing, and maintenance for all vehicle types. Known for eco-friendly products and excellent customer care.</p>
+        <p><strong>Location:</strong> 789 Driveway Avenue, Orange Farm, Johannesburg, 1841</p>
+        <p><strong>Contact:</strong> (011) 850-6789</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Mafisa Tech Affiliate Pty Ltd. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
-
-
-
