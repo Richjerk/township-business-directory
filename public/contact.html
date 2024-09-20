@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Township Business Directory</title>
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles/custom-styles.css">
+    <link rel="stylesheet" href="styles/custom-styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
+            color: #333;
         }
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
             text-align: center;
+        }
+        nav {
+            margin: 20px 0;
         }
         nav ul {
             list-style-type: none;
@@ -26,27 +30,22 @@
             display: inline;
             margin: 0 15px;
         }
-        nav a {
-            color: #fff;
+        nav ul li a {
             text-decoration: none;
+            color: white;
+            font-weight: bold;
         }
         .container {
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
         }
         footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
-            background-color: #333;
-            color: #fff;
+            margin-top: 40px;
+            padding: 20px;
+            background: #4CAF50;
+            color: white;
         }
     </style>
 </head>
@@ -57,6 +56,9 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </nav>
 </header>
@@ -66,19 +68,20 @@
     <p>We are dedicated to connecting local businesses with their community in South African Townships. Our platform provides a seamless way for businesses to engage with customers and offer their services effectively.</p>
 
     <h3>Get in Touch</h3>
-    <form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" required></textarea><br><br>
-        <input type="submit" value="Send Message">
-    </form>
+<form action="/send-email" method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" required></textarea><br><br>
+    <input type="submit" value="Send Message">
+</form>
+
 </div>
 
 <footer>
-    <p>&copy; 2024 Township Business Directory</p>
+    <p>&copy; 2024 Mafisa Tech Affiliate Pty Ltd. All Rights Reserved.</p>
 </footer>
 
 </body>

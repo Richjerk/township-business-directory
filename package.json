@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://myusername.github.io/my-app",
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.21.0",
     "@sideway/address": "^5.0.0",
     "@stackbit/cms-contentful": "^1.0.10",
     "@testing-library/jest-dom": "^5.17.0",
@@ -18,10 +20,11 @@
     "joi": "^17.13.3",
     "mongodb": "^6.9.0",
     "mongoose": "^8.6.3",
+    "nodemailer": "^6.9.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

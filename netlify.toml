@@ -1,6 +1,9 @@
 [build]
-  base = "src"    # Specifies the subdirectory where your frontend (React) code lives
-  command = "npm run build"
-  publish = "src/build"  # This points to where the build files are generated after running the build command
+  base = "."   # This points to the root of your project if the frontend is in the root
+  publish = "build"   # This points to the build directory after the React app is built
+  command = "npm run build"  # Command to build your React app
+
+[build.environment]
+  NODE_VERSION = "20.17.0"  # Node.js version for Netlify to use
 
 
