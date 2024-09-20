@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import BusinessForm from './components/BusinessForm';
 import UserForm from './components/UserForm';
 import LandingPage from './components/LandingPage';
+import CloudinaryImage from './components/CloudinaryImage';
 
 function App() {
   return (
