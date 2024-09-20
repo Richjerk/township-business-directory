@@ -1,4 +1,6 @@
 [build]
+  base = "src"    # Specifies the subdirectory where your frontend (React) code lives
   command = "npm run build"
-  publish = "build"
+  publish = "src/build"  # This points to where the build files are generated after running the build command
+
 
