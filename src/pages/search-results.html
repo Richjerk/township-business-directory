@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Township Business Directory</title>
+    <link rel="stylesheet" href="styles/custom-styles.css">
+    <style>
+        /* Additional Styles for the Results Page */
+        .results-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .result-item a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Search Results</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="businesses.html">Our Businesses</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="results-container">
+    <h2>Results for "<span id="search-query"></span>":</h2>
+    <div id="results"></div>
+
+    <!-- In case no results were found -->
+    <p class="no-results" style="display: none;">No businesses found matching your query.</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 Township Business Directory. All rights reserved.</p>
+</footer>
+
+<script>
+    // Capture the query from the URL
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('query');
+    
+    // Display the query on the page
+    document.getElementById('search-query').textContent = query;
+    
+    // Fetch search results using the query
+    fetch(`/api/search?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsContainer = document.getElementById('results');
+            
+            // Check if there are results
+            if (data.length > 0) {
+                data.forEach(business => {
+                    const resultItem = document.createElement('div');
+                    resultItem.classList.add('result-item');
+                    resultItem.innerHTML = `
+                        <h3>${business.name}</h3>
+                        <p>${business.description}</p>
+                        <a href="business-details.html?id=${business.id}">View Details</a>
+                    `;
+                    resultsContainer.appendChild(resultItem);
+                });
+            } else {
+                document.querySelector('.no-results').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching search results:', error);
+            document.querySelector('.no-results').style.display = 'block';
+        });
+</script>
+
+</body>
+</html>
+

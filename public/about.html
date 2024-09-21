@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Township Business Directory</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover local businesses in South Africa's townships with Township Business Directory. Connect, showcase products, and empower the community.">
+    <meta name="keywords" content="Township, Business Directory, Local Businesses, South Africa, Economic Empowerment, Community Support">
+    <meta name="author" content="Mafisa Tech Affiliate Pty Ltd">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="%PUBLIC_URL%/styles/custom-styles.css">
+
     <style>
         /* Custom styles for the About Us page */
         body {
@@ -13,6 +30,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            animation: fadeIn 1s ease;
         }
         header {
             background-color: #4CAF50;
@@ -32,9 +50,10 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
         nav ul li a:hover {
-            text-decoration: underline;
+            color: #ffeb3b; /* Highlight color */
         }
         .about-container {
             max-width: 1200px;
@@ -43,6 +62,10 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s forwards;
+            animation-delay: 0.2s;
         }
         h1 {
             color: #4CAF50;
@@ -71,6 +94,50 @@
             color: white;
             margin-top: 20px;
         }
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+        /* Toast Notification Styles */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+        }
+        .toast-success {
+            background-color: #4CAF50;
+        }
+        .toast-error {
+            background-color: #f44336;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -79,15 +146,15 @@
     <h1>About Us</h1>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="businesses.html">Our Businesses</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="index.html" aria-label="Go to Home page">Home</a></li>
+            <li><a href="about.html" aria-label="Learn more About Us">About Us</a></li>
+            <li><a href="businesses.html" aria-label="View Our Businesses">Our Businesses</a></li>
+            <li><a href="contact.html" aria-label="Contact Us">Contact Us</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="about-container">
+<main class="about-container" role="main">
     <h1>Welcome to Township Business Directory</h1>
     <p>
         Township Business Directory is your gateway to discovering local businesses in South Africa's vibrant townships. 
@@ -104,15 +171,58 @@
         services, the Township Business Directory is here to assist. Join us on this journey towards sustainable growth 
         and economic empowerment for townships across South Africa.
     </p>
-    <a href="index.html" class="back-link">Back to Home</a>
-</div>
+    <img src="your-image-url.webp" alt="Local businesses" loading="lazy" class="img-fluid">
+
+    <a href="index.html" class="back-link" aria-label="Return to Home page">Back to Home</a>
+</main>
+
+<!-- Toast Notification -->
+<div class="toast toast-success" id="toastSuccess">Form submitted successfully!</div>
+<div class="toast toast-error" id="toastError">Error submitting form. Please try again.</div>
 
 <footer>
     <p>&copy; 2024 Mafisa Tech Affiliate Pty Ltd. All Rights Reserved.</p>
+    <ul>
+        <li><a href="privacy.html" aria-label="Read our Privacy Policy">Privacy Policy</a></li>
+        <li><a href="terms.html" aria-label="View our Terms of Service">Terms of Service</a></li>
+        <li><a href="contact.html" aria-label="Contact Us">Contact Us</a></li>
+    </ul>
 </footer>
+
+<!-- jQuery and Bootstrap JS from CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Caching Headers (Add in your server configuration) -->
+<script>
+    // Example of setting cache headers for assets
+    if (window.location.hostname === 'yourdomain.com') {
+        fetch('/path-to-your-assets', {
+            method: 'GET',
+            headers: {
+                'Cache-Control': 'public, max-age=31536000' // Cache for 1 year
+            }
+        });
+    }
+
+    // Function to show toast notifications
+    function showToast(message, isSuccess) {
+        const toast = isSuccess ? $('#toastSuccess') : $('#toastError');
+        toast.text(message).fadeIn(300).delay(3000).fadeOut(300);
+    }
+
+    // Example usage of the showToast function (replace with your actual form submission logic)
+    $(document).ready(function() {
+        // Simulate form submission success
+        $('#contactForm').on('submit', function(event) {
+            event.preventDefault();
+            // Assume form is submitted successfully
+            showToast('Form submitted successfully!', true);
+        });
+    });
+</script>
 
 </body>
 </html>
-
 
 

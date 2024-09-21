@@ -4,59 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Businesses</title>
+
+    <!-- SEO Improvements -->
+    <meta name="description" content="Explore featured businesses in Orange Farm Township. Discover local services, grocery stores, and bakeries.">
+    <meta name="keywords" content="Orange Farm, local businesses, car wash, grocery store, bakery, township services">
+    <meta name="author" content="Mafisa Tech Affiliate Pty Ltd">
+
+    <!-- Favicon link -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Stylesheets from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-DyZvQx+LOnM3DHD87DJrY1sohnIhNG+DZ1A7J39u6LlIvhz8GkKkFCcY2p2z8Lbc" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/custom-styles.css">
+
+    <!-- Caching strategies -->
+    <meta http-equiv="Cache-Control" content="max-age=3600, public"> <!-- Cache for 1 hour -->
+    <meta http-equiv="Expires" content="Wed, 21 Oct 2024 07:28:00 GMT"> <!-- Set a future expiration date -->
+
     <style>
-        /* Sample inline styles for demonstration; adjust as needed */
+        /* Existing styles with animations */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
+            animation: fadeIn 0.5s ease;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         header {
             background-color: #4CAF50;
             color: white;
             padding: 20px;
             text-align: center;
+            animation: slideDown 0.5s ease;
         }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
         }
+
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
         }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #45a049;
+            border-radius: 5px;
+        }
+
         main {
             padding: 20px;
         }
+
         section {
             margin: 20px 0;
         }
+
         article {
             background: white;
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
+
+        article:hover {
+            transform: translateY(-5px);
+        }
+
         img {
             max-width: 100%;
             height: auto;
             border-radius: 5px;
+            animation: zoomIn 0.5s ease;
         }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #4CAF50;
             color: white;
             position: relative;
             bottom: 0;
             width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        footer nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+        }
+
+        footer .social-links a {
+            margin: 0 5px;
+        }
+
+        footer .social-links img {
+            width: 24px; /* Adjust icon size */
+            height: auto;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
         }
     </style>
 </head>
@@ -65,10 +162,10 @@
         <h1>Our Featured Businesses in Orange Farm Township</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="businesses.html">Our Businesses</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="index.html" aria-label="Go to Home page">Home</a></li>
+                <li><a href="about.html" aria-label="Learn more about us">About Us</a></li>
+                <li><a href="businesses.html" aria-label="View our businesses">Our Businesses</a></li>
+                <li><a href="contact.html" aria-label="Contact us for inquiries">Contact Us</a></li>
             </ul>
         </nav>
     </header>
@@ -79,22 +176,87 @@
                 <h3>Mawasha Wax N Shine Car Wash</h3>
                 <p>Location: Orange Farm, Ext 7</p>
                 <p>A top-rated car wash service known for its attention to detail. Visit Mawasha for a quick and professional car wash, polish, and interior cleaning.</p>
-                <img src="https://copilot.microsoft.com/images/create/orange-farm-township-mawasha-wax-n-shine-car-wash-/1-66ec7f1ceb7b4526af09c1276db474cc?id=Dv1ywvNjSJkWxzNxWCK%2bTQ%3d%3d&view=detailv2&idpp=genimg&thId=OIG1.j6gU4Deq0k1w1aeZ4pQv&skey=RXrq0yEjIkyJsSU8Mgw6jIEZ28p-NWXwowSvjKmZoHI&FORM=GCRIDP&mode=overlay" alt="Mawasha Wax N Shine Car Wash" />
+                <img src="https://example.com/mawasha-wax-n-shine-car-wash.jpg" alt="Mawasha Wax N Shine Car Wash" loading="lazy" />
             </article>
             <article>
                 <h3>Orange Grocers</h3>
                 <p>Location: Orange Farm, Main Road</p>
                 <p>Locally owned grocery store offering fresh produce, groceries, and local products. Orange Grocers is your go-to store for quality and convenience.</p>
+                <img src="https://example.com/orange-grocers.jpg" alt="Orange Grocers" loading="lazy" />
             </article>
             <article>
                 <h3>Bana Ba Rona Bakery</h3>
                 <p>Location: Orange Farm, T-Section</p>
                 <p>A beloved bakery offering delicious freshly baked goods. Stop by for a selection of breads, cakes, and pastries.</p>
+                <img src="https://example.com/bana-ba-rona-bakery.jpg" alt="Bana Ba Rona Bakery" loading="lazy" />
             </article>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2024 Mafisa Tech Affiliate Pty Ltd. All Rights Reserved.</p>
+        <div class="footer-content">
+            <p>&copy; 2024 Mafisa Tech Affiliate Pty Ltd. All Rights Reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="images/icons8-facebook-24.png" alt="Facebook" />
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="images/icons8-twitterx-50.png" alt="Twitter" />
+                </a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="images/icons8-instagram-50.png" alt="Instagram" />
+                </a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+            <small class="text-muted">Just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Your message has been sent successfully!
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS for functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZVP8L9v2U0Z17Dk7Te0+BcNiFpE3t25vD8k/jVQG/G8lbKmMBaNlQmHb+67VxgJx" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-lx7h2K0h6YbU6M+eFh1MmZ7b0FowNlm4bcLkFLK4Z3LBs2k/1FkK93yWnXyLif/D" crossorigin="anonymous"></script>
+    
+    <script>
+        // Function to show the toast notification
+        function showToast() {
+            $('#toast').toast({
+                autohide: true,
+                delay: 3000
+            });
+            $('#toast').toast('show');
+        }
+
+        // Example: Show toast on successful form submission
+        // Uncomment the following lines when implementing the form
+        // $('#contactForm').on('submit', function(e) {
+        //     e.preventDefault();
+        //     // Assuming form validation is successful
+        //     showToast();
+        // });
+    </script>
 </body>
 </html>
+
+
+
+
+
