@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BusinessForm from './components/BusinessForm';
 import UserForm from './components/UserForm';
 import LandingPage from './components/LandingPage';
-import Dashboard from './components/Dashboard'; // Add this line
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
