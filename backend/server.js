@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Added for JSON parsing
 app.use(cors());
 
 // Retrieve MongoDB URI and other environment variables
