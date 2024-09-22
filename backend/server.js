@@ -1,4 +1,5 @@
-require('dotenv').config(); // Load environment variables from .env file
+// Load environment variables from .env file
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -6,19 +7,26 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const axios = require('axios'); // Ensure axios is imported to handle external API calls
+const { RetrievalQAChain } = require('langchain/chains'); // Assuming you're using LangChain
+const { getChatResponse } = require('./chatbot'); // Assuming you have separate chatbot logic
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // Parse JSON payloads
-app.use(cors()); // Enable CORS
+app.use(bodyParser.json());
+app.use(cors());
 
-// Retrieve the MongoDB URI from the environment variable or use a fallback URI
-const uri = process.env.MONGODB_URI || 'mongodb://localhost/township-businesses';
+// Retrieve MongoDB URI and other environment variables
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/township-businesses';
+const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY;
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
 
 // Connect to MongoDB
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -34,8 +42,6 @@ const BusinessSchema = new mongoose.Schema({
 // Create a model for the Business schema
 const Business = mongoose.model('Business', BusinessSchema);
 
-// Define your API routes
-
 // Get all businesses
 app.get('/api/businesses', async (req, res) => {
   try {
@@ -46,7 +52,7 @@ app.get('/api/businesses', async (req, res) => {
   }
 });
 
-// POST route to create a new business
+// Create a new business
 app.post('/api/businesses', async (req, res) => {
   const newBusiness = new Business(req.body);
   try {
@@ -57,15 +63,17 @@ app.post('/api/businesses', async (req, res) => {
   }
 });
 
-// Include chatbot functionality
-const { getChatResponse } = require('./chatbot'); // Assuming this is a helper function in chatbot.js
-
+// Chatbot functionality using GPT or RAG
 app.post('/api/chat', async (req, res) => {
+  const { prompt } = req.body;
+
   try {
-    const response = await getChatResponse(req.body.prompt);
+    // Fetch response from your GPT API or RAG-based setup
+    const response = await getChatResponse(prompt); // Custom function or external service
     res.json({ response });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error fetching chatbot response:', error);
+    res.status(500).json({ error: 'Error processing request' });
   }
 });
 
@@ -77,14 +85,14 @@ app.post('/api/send-email', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER, // Your email from .env
-      pass: process.env.EMAIL_PASS  // Your email password from .env
+      user: EMAIL_USER,
+      pass: EMAIL_PASS
     }
   });
 
   const mailOptions = {
     from: email,
-    to: 'puseletso55@gmail.com', // Your email to receive messages
+    to: 'puseletso55@gmail.com', // Change this to your recipient email
     subject: `New Enquiry from ${name}`,
     text: message,
     html: `<p>You have a new enquiry from:</p>
@@ -97,6 +105,7 @@ app.post('/api/send-email', async (req, res) => {
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: 'Email sent successfully!' });
   } catch (error) {
+    console.error('Error sending email:', error);
     res.status(500).json({ error: 'Error sending email' });
   }
 });
@@ -108,3 +117,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
