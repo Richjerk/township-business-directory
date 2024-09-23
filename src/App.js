@@ -5,6 +5,7 @@ import UserForm from './components/UserForm';
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import Chatbot from './components/Chatbot'; // Import the Chatbot
+import { Navigate } from 'react-router-dom'; // Import Navigate
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,18 +39,9 @@ function App() {
           {isAuthenticated && (
             <Route path="/dashboard" element={<Dashboard />} />
           )}
-          <Route path="/about" element={() => {
-            window.location.href = '/about.html'; // Redirect to the static HTML
-            return null;
-          }} />
-          <Route path="/businesses" element={() => {
-            window.location.href = '/businesses.html'; // Redirect to the static HTML
-            return null;
-          }} />
-          <Route path="/contact" element={() => {
-            window.location.href = '/contact.html'; // Redirect to the static HTML
-            return null;
-          }} />
+          <Route path="/about" element={<Navigate to="/about.html" />} />
+          <Route path="/businesses" element={<Navigate to="/businesses.html" />} />
+          <Route path="/contact" element={<Navigate to="/contact.html" />} />
         </Routes>
 
         {/* Add the chatbot at the bottom of the app, so it's visible on every page */}
@@ -60,3 +52,5 @@ function App() {
 }
 
 export default App;
+
+
